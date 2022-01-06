@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 import com.alibaba.fastjson.JSON;
 import ws.schild.jave.EncoderException;
-import ws.schild.jave.InputFormatException;
 import ws.schild.jave.MultimediaObject;
 import ws.schild.jave.info.MultimediaInfo;
 
@@ -20,7 +19,7 @@ import ws.schild.jave.info.MultimediaInfo;
 public class FfmpegFileUrlInfoE {
     private static Logger logger = Logger.getLogger(FfmpegFileUrlInfoE.class.getName());
 
-    public static void main(String[] args) throws InputFormatException, EncoderException, MalformedURLException {
+    public static void main(String[] args) throws EncoderException, MalformedURLException {
         URL fileURL = new URL("http://spacefly.cn/assets2/corner.mp4");
         MultimediaObject instance = new MultimediaObject(fileURL);
         MultimediaInfo result = instance.getInfo();
@@ -30,7 +29,7 @@ public class FfmpegFileUrlInfoE {
         logger.info(String.format("视频大小（MB）:%s", new BigDecimal(getFileSize(fileURL) + "").divide(new BigDecimal("1024")).divide(new BigDecimal("1024")).doubleValue()));
         logger.info(String.format("视频真实格式:%s", result.getFormat()));
         logger.info(String.format("视频时长（毫秒）:%s", result.getDuration()));
-        logger.info(String.format("视频宽：%s，高:%s", result.getVideo().getSize().getWidth(),result.getVideo().getSize().getHeight()));
+        logger.info(String.format("视频宽：%s，高:%s", result.getVideo().getSize().getWidth(), result.getVideo().getSize().getHeight()));
         logger.info(String.format("视频比特率（bit rate）:%s", result.getVideo().getBitRate()));
         logger.info(String.format("视频信息:%s", JSON.toJSONString(result.getMetadata())));
         logger.info(String.format("视频Video信息:%s", JSON.toJSONString(result.getVideo())));
@@ -46,16 +45,16 @@ public class FfmpegFileUrlInfoE {
         URLConnection conn = null;
         try {
             conn = url.openConnection();
-            if(conn instanceof HttpURLConnection) {
-                ((HttpURLConnection)conn).setRequestMethod("HEAD");
+            if (conn instanceof HttpURLConnection) {
+                ((HttpURLConnection) conn).setRequestMethod("HEAD");
             }
             conn.getInputStream();
             return conn.getContentLength();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            if(conn instanceof HttpURLConnection) {
-                ((HttpURLConnection)conn).disconnect();
+            if (conn instanceof HttpURLConnection) {
+                ((HttpURLConnection) conn).disconnect();
             }
         }
     }
