@@ -2,7 +2,6 @@ package com.lgq.ffmpeg_java.examples;
 
 import com.alibaba.fastjson.JSON;
 import ws.schild.jave.EncoderException;
-import ws.schild.jave.InputFormatException;
 import ws.schild.jave.MultimediaObject;
 import ws.schild.jave.info.MultimediaInfo;
 

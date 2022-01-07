@@ -35,10 +35,9 @@ public class FfmpegCmdHls4M3u8E {
                 .thenApplyAsync((Integer code)->{
                     if(CODE_SUCCESS != code) {return CODE_FAIL;}
                     System.out.println("第一步：视频整体转码ts,成功！");
-                    /*
                     Integer codeTmp =  cmdExecute(cmd_ts_split);
                     if(CODE_SUCCESS != codeTmp) {return CODE_FAIL;}
-                    System.out.println("第二步：ts 文件切片,成功！");*/
+                    System.out.println("第二步：ts 文件切片,成功！");
                     return code;
                 }, ThreadPoolExecutorUtils.pool);
 
